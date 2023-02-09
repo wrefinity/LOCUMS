@@ -1,0 +1,174 @@
+<section class = "pricing_part section_padding" >
+	<div class="container">
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <div class="pricing_plan_header d-flex align-items-center ">
+	                <label class="toggler toggler--is-active" id="filt-monthly">Monthly</label>
+	                <div class="toggle">
+	                    <input type="checkbox" id="switcher" class="check">
+	                    <b class="b switch"></b>
+	                </div>
+	                <label class="toggler" id="filt-yearly">yearly</label>
+	            </div>
+	            <div id="monthly">
+	                <div class="pricing_wrapper">
+	                    <div class="single_plan">
+	                        <div class="price">
+	                            <h5>Free</h5>
+	                            <h2><span>$</span> 12.99</h2>
+	                            <p>per month</p>
+	                        </div>
+	                        <div class="price_dec">
+	                            <ul>
+	                                <li>Maximum 1 User</li>
+	                                <li>Total 100 Records</li>
+	                                <li>No Integrations</li>
+	                            </ul>
+	                            <a class="btn_3" href="#">Select this Plan</a>
+	                        </div>
+	                    </div>
+	                    <div class="single_plan">
+	                        <div class="price">
+	                            <h5>Starter</h5>
+	                            <h2><span>$</span> 52.99</h2>
+	                            <p>per month</p>
+	                        </div>
+	                        <div class="price_dec">
+	                            <ul>
+	                                <li>Maximum 1 User</li>
+	                                <li>Total 100 Records</li>
+	                                <li>No Integrations</li>
+	                            </ul>
+	                            <a class="btn_3" href="#">Select this Plan</a>
+	                        </div>
+	                    </div>
+	                    <div class="single_plan active_plan">
+	                        <div class="price">
+	                            <h5>Bronze</h5>
+	                            <h2><span>$</span>2.9</h2>
+	                            <p>per month</p>
+	                        </div>
+	                        <div class="price_dec">
+	                            <ul>
+	                                <li>Maximum 1 User</li>
+	                                <li>Total 100 Records</li>
+	                                <li>No Integrations</li>
+	                            </ul>
+	                            <a class="btn_3" href="#">Select this Plan</a>
+	                        </div>
+	                    </div>
+	                    <div class="single_plan">
+	                        <div class="price">
+	                            <h5>Silver</h5>
+	                            <h2><span>$</span> 10.99</h2>
+	                            <p>per month</p>
+	                        </div>
+	                        <div class="price_dec">
+	                            <ul>
+	                                <li>Maximum 1 User</li>
+	                                <li>Total 100 Records</li>
+	                                <li>No Integrations</li>
+	                            </ul>
+	                            <a class="btn_3" href="#">Select this Plan</a>
+	                        </div>
+	                    </div>
+	                    <div class="single_plan">
+	                        <div class="price">
+	                            <h5>Gold</h5>
+	                            <h2><span>$</span> 75.99</h2>
+	                            <p>per month</p>
+	                        </div>
+	                        <div class="price_dec">
+	                            <ul>
+	                                <li>Maximum 1 User</li>
+	                                <li>Total 100 Records</li>
+	                                <li>No Integrations</li>
+	                            </ul>
+	                            <a class="btn_3" href="#">Select this Plan</a>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	            <div id="yearly" class="hide">
+	                <div class="pricing_wrapper">
+	                    <div class="single_plan">
+	                        <div class="price">
+	                            <h5>Free</h5>
+	                            <h2><span>$</span> 90.99</h2>
+	                            <p>per month</p>
+	                        </div>
+	                        <div class="price_dec">
+	                            <ul>
+	                                <li>Maximum 1 User</li>
+	                                <li>Total 100 Records</li>
+	                                <li>No Integrations</li>
+	                            </ul>
+	                            <a class="btn_3" href="#">Select this Plan</a>
+	                        </div>
+	                    </div>
+	                    <div class="single_plan active_plan">
+	                        <div class="price">
+	                            <h5>Free</h5>
+	                            <h2><span>$</span> 82.99</h2>
+	                            <p>per month</p>
+	                        </div>
+	                        <div class="price_dec">
+	                            <ul>
+	                                <li>Maximum 1 User</li>
+	                                <li>Total 100 Records</li>
+	                                <li>No Integrations</li>
+	                            </ul>
+	                            <a class="btn_3" href="#">Select this Plan</a>
+	                        </div>
+	                    </div>
+	                    <div class="single_plan">
+	                        <div class="price">
+	                            <h5>Free</h5>
+	                            <h2><span>$</span> 54.99</h2>
+	                            <p>per month</p>
+	                        </div>
+	                        <div class="price_dec">
+	                            <ul>
+	                                <li>Maximum 1 User</li>
+	                                <li>Total 100 Records</li>
+	                                <li>No Integrations</li>
+	                            </ul>
+	                            <a class="btn_3" href="#">Select this Plan</a>
+	                        </div>
+	                    </div>
+	                    <div class="single_plan">
+	                        <div class="price">
+	                            <h5>Free</h5>
+	                            <h2><span>$</span> 26.99</h2>
+	                            <p>per month</p>
+	                        </div>
+	                        <div class="price_dec">
+	                            <ul>
+	                                <li>Maximum 1 User</li>
+	                                <li>Total 100 Records</li>
+	                                <li>No Integrations</li>
+	                            </ul>
+	                            <a class="btn_3" href="#">Select this Plan</a>
+	                        </div>
+	                    </div>
+	                    <div class="single_plan">
+	                        <div class="price">
+	                            <h5>Free</h5>
+	                            <h2><span>$</span> 152.99</h2>
+	                            <p>per month</p>
+	                        </div>
+	                        <div class="price_dec">
+	                            <ul>
+	                                <li>Maximum 1 User</li>
+	                                <li>Total 100 Records</li>
+	                                <li>No Integrations</li>
+	                            </ul>
+	                            <a class="btn_3" href="#">Select this Plan</a>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+< /section>

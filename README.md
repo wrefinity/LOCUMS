@@ -13,14 +13,14 @@ npm i nodemon -g
 
 NOTE: for dotenv files contact wrefordmessi@gmail.com
 
-## setting up frontend
+## setting up Backend
 
 ```
 cd backend && npm install
 npm run dev
 ```
 
-## setting up backend
+## setting up FrontEnd
 
 ```
 cd client && npm install

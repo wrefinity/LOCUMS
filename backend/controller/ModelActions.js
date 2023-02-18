@@ -20,8 +20,12 @@ export const deletor = async (obj, id) => {
   return deleted;
 };
 export const updator = async (obj, id, payload) => {
-  const updated = await obj.findByIdAndUpdate(id, { $set: payload }, payload, {
-    new: true,
-  });
+  const updated = await obj.findByIdAndUpdate(
+    id,
+    { $set: payload },
+    {
+      new: true,
+    }
+  );
   return updated;
 };

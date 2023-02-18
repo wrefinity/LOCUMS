@@ -3,12 +3,7 @@ import asyncHandler from "express-async-handler";
 import StatusCodes from "http-status-codes";
 import checkId from "../Utils/mongoIdCheck.js";
 import CustomError from "../error/index.js";
-import {
-  findAll,
-  findOne,
-  creator,
-  updator,
-} from "./ModelActions.js";
+import { findAll, findOne, creator, updator } from "./ModelActions.js";
 
 class ShiftRepo {
   CreateShift = asyncHandler(async (req, res) => {

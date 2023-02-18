@@ -17,17 +17,19 @@ router
   .get(
     AuthRoles.Authenticate,
     AuthRoles.authorizePermissions,
-    ApplyJob.getAllApplication
+    ApplyJob.getApply
   );
+
+router.route("/admin").get(AuthRoles.Authenticate, ApplyJob.getAllApplication);
 router
   .route("/:applyId")
   .delete(AuthRoles.authorizePermissions, ApplyJob.deleteUserJobs);
 router
-  .route("/:userId/:postId")
+  .route("/:userId/:jobId")
   .patch(
     AuthRoles.Authenticate,
     AuthRoles.authorizePermissions,
-    ApplyJob.deleteApplicationPost
+    ApplyJob.deleteApplicationJob
   );
 
 export default router;

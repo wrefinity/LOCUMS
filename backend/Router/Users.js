@@ -26,9 +26,8 @@ router
     UserRepo.updateUser
   );
 
-router.route("/login").get(UserRepo.login_get).post(UserRepo.login_post);
+router.route("/login").post(UserRepo.login_post);
 router.post("/changePassword", AuthRoles.Authenticate, UserRepo.changePassword);
 router.post("/changeImage", AuthRoles.Authenticate, UserRepo.changeImage);
-// router.get("/logout", UserRepo.logout);
 
 export default router;

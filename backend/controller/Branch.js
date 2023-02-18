@@ -44,7 +44,7 @@ class BranchRepo {
     if (!match)
       throw new CustomError.NotFoundRequestError(`No Branch with id : ${id}`);
     const deleted = await updator(Branch, id, { isDeleted: false });
-    deleted && res.status(StatusCodes.OK).json({ deleted });
+    deleted && res.status(StatusCodes.OK).json(deleted);
   });
 
   allBranch = asyncHandler(async (req, res) => {

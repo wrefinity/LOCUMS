@@ -15,7 +15,7 @@ class UserRepo {
     const user = await findOne(User, { _id: id });
     if (!user)
       throw new CustomError.NotFoundRequestError(`No user with id ${id}`);
-    await user.remove();
+    await updator(User, id, { isDeleted: true });
     res.status(StatusCodes.OK).json({ message: "user deleted" });
   });
 
@@ -26,8 +26,11 @@ class UserRepo {
         "Please provide the necessary values"
       );
     }
-    const { id: userId } = req.params;
-    checkId(userId);
+    const { id } = req.params;
+    checkId(id);
+    const user = await findOne(User, { _id: id });
+    if (!user)
+      throw new CustomError.NotFoundRequestError(`No user with id ${id}`);
     const updatedUser = await updator(User, id, req.body);
     res.status(StatusCodes.OK).json(updatedUser);
   });
@@ -39,6 +42,25 @@ class UserRepo {
       isDeleted: false,
     }).select("-password");
     res.status(StatusCodes.OK).json(users);
+
+    const { page } = req.query;
+    const limit = 10;
+    const startIndex = (Number(page) - 1) * limit;
+    const total = await User.countDocuments({});
+    const data = await User.find({
+      role: { $not: /^admin.*/ },
+      isDeleted: false,
+    })
+      .limit(limit)
+      .skip(startIndex)
+      .select("-password");
+    data &&
+      res.status(StatusCodes.OK).json({
+        users: data,
+        currentPage: Number(page),
+        totalUsers: total,
+        numberOfPages: Math.ceil(total / limit),
+      });
   });
 
   //get singleUser
@@ -76,22 +98,6 @@ class UserRepo {
       signed: true,
     });
     res.status(StatusCodes.OK).json({ ...user, token });
-  });
-
-  login_get = asyncHandler(async (req, res) => {
-    const email = process.env.ADMIN_EMAIL;
-    const password = process.env.ADMIN_PASSWORD;
-    const role = process.env.ADMIN_ROLE;
-
-    const userFind = await User.findOne({ email });
-    if (!userFind) {
-      // throw new CustomError.UnauthenticatedError("User Not Registered")
-      const user = await User.create({
-        email,
-        password,
-        role,
-      });
-    }
   });
 
   //    registration sections

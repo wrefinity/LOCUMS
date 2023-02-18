@@ -3,7 +3,7 @@ import asyncHandler from "express-async-handler";
 import StatusCodes from "http-status-codes";
 import checkId from "../Utils/mongoIdCheck.js";
 import CustomError from "../error/index.js";
-import { findAll, findOne, creator, updator } from "./ModelActions.js";
+import { findOne, creator, updator } from "./ModelActions.js";
 
 class JobRepo {
   createJob = asyncHandler(async (req, res) => {
@@ -51,8 +51,21 @@ class JobRepo {
   });
 
   allJob = asyncHandler(async (req, res) => {
-    const data = await findAll(Job);
-    data && res.status(StatusCodes.OK).json(data);
+    const { page } = req.query;
+    const limit = 10;
+    const startIndex = (Number(page) - 1) * limit;
+    const total = await Job.countDocuments({});
+    const data = await Job.find({}).limit(limit).skip(startIndex).populate({
+      path: "categoryId",
+      select: "name",
+    });
+    data &&
+      res.status(StatusCodes.OK).json({
+        jobs: data,
+        currentPage: Number(page),
+        totalJobs: total,
+        numberOfPages: Math.ceil(total / limit),
+      });
   });
 
   singleJob = asyncHandler(async (req, res) => {

@@ -20,7 +20,7 @@ app.set("trust proxy", 1);
 
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: ["http://localhost:3000", "https://irish-locums-api.onrender.com"],
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "UPDATE"],
   })
@@ -44,7 +44,7 @@ const swaggerOptions = {
         "This is the server for the Irish Locums endpoints. This is strictly for development purposes.",
       contact: {
         name: "Hanis Hapsa, Ishak",
-        url: "http://www.rougepay.com/support",
+        url: "https://irish-locums-api.onrender.com/",
         email: "hapsahanis.hh@gmail.com",
       },
     },
@@ -54,7 +54,7 @@ const swaggerOptions = {
         description: "Development server",
       },
       {
-        url: "https://rougapay.com/api",
+        url: "https://irish-locums-api.onrender.com/",
         description: "Production server",
       },
     ],

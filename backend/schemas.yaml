@@ -1,0 +1,328 @@
+components:
+  schemas:
+    Job:
+      type: object
+      properties:
+        userId:
+          type: string
+          format: ObjectId
+          description: The user ID associated with the job
+        title:
+          type: string
+          description: The title of the job
+        description:
+          type: string
+          description: The description of the job
+        payFrequency:
+          type: string
+          description: The pay frequency of the job (monthly, daily, weekly, yearly)
+        workHour:
+          type: string
+          description: The work hour of the job (fulltime or partime)
+        workPattern:
+          type: string
+          description: The work pattern of the job (morning, day or night shift)
+        startDate:
+          type: string
+          format: date
+          description: The start date of the job
+        category:
+          type: string
+          description: The category of the job
+        endDate:
+          type: string
+          format: date
+          description: The end date of the job
+        vacancies:
+          type: integer
+          description: The number of vacancies for the job
+        salary:
+          type: number
+          description: The salary for the job (negotiatable or fixed)
+        jobType:
+          type: string
+          description: The type of job (temporary or permanent)
+        branchId:
+          type: string
+          format: ObjectId
+          description: The branch ID associated with the job
+        publishedDate:
+          type: string
+          format: date-time
+          description: The published date of the job
+        expiredDate:
+          type: string
+          description: The expired date of the job
+        benefit:
+          type: array
+          items:
+            type: string
+          description: The list of benefits associated with the job
+        requirements:
+          type: array
+          items:
+            type: string
+          description: The list of requirements for the job
+        isActive:
+          type: boolean
+          description: The active status of the job
+        isDeleted:
+          type: boolean
+          description: The deleted status of the job
+        createdAt:
+          type: string
+          format: date-time
+          description: The creation timestamp of the job
+        updatedAt:
+          type: string
+          format: date-time
+          description: The update timestamp of the job
+      example:
+        userId: 609c6f9f2e0e4c74b0a51701
+        title: Senior Software Engineer
+        description: We are looking for a senior software engineer to join our team.
+        payFrequency: monthly
+        workHour: fulltime
+        workPattern: day shift
+        startDate: 2023-04-01
+        category: Engineering
+        endDate: 2024-04-01
+        vacancies: 2
+        salary: 80000.00
+        jobType: permanent
+        branchId: 609c6f9f2e0e4c74b0a51702
+        publishedDate: 2023-04-01T10:00:00Z
+        expiredDate: 2023-05-01
+        benefit:
+          - Health insurance
+          - Paid vacation
+        requirements:
+          - 5+ years of experience in software engineering
+          - Strong problem-solving skills
+        isActive: true
+        isDeleted: false
+        createdAt: 2023-04-01T10:00:00Z
+
+    Branch:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 60a2f8f8c1234b1f4c3d3e4a
+        name:
+          type: string
+          example: Main Branch
+        address:
+          type: string
+          example: 123 Main Street
+        county:
+          type: string
+          example: California
+        userId:
+          type: string
+          example: 60a1e7d8c7894a1d3c1b2c3d
+        isDeleted:
+          type: boolean
+          example: false
+    User:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          description: The email of the user
+        fullname:
+          type: string
+          description: The full name of the user
+        company_name:
+          type: string
+          description: The name of the company the user belongs to
+        username:
+          type: string
+          description: The username of the user
+        image:
+          type: string
+          description: The URL of the user's profile image
+        resume:
+          type: string
+          description: The URL of the user's resume
+        password:
+          type: string
+          minLength: 6
+          description: The password of the user
+        role:
+          type: string
+          description: The role of the user (default is organization)
+        jobType:
+          type: string
+          description: The type of job the user is seeking
+        phone:
+          type: string
+          description: The phone number of the user
+        psniNumber:
+          type: string
+          description: The PSNI number of the user
+        gender:
+          type: string
+          description: The gender of the user
+        professionalHeadline:
+          type: string
+          description: The professional headline of the user
+        profileSummary:
+          type: string
+          description: The profile summary of the user
+        vettingFile:
+          type: string
+          description: The URL of the user's vetting file
+        dispensing_software:
+          type: string
+          description: The dispensing software used by the user
+        company_website:
+          type: string
+          description: The website of the company the user belongs to
+        address:
+          type: string
+          description: The address of the user
+        city:
+          type: string
+          description: The city of the user
+        county:
+          type: string
+          description: The county of the user
+        regNumber:
+          type: string
+          description: The registration number of the user
+        eir_code:
+          type: string
+          description: The Eircode of the user
+        info:
+          type: string
+          description: Additional information about the user
+        url:
+          type: string
+          description: The URL of the user's website or portfolio
+        occupation:
+          type: string
+          description: The occupation of the user
+        status:
+          type: string
+          description: The status of the user (default is unverified)
+        isDeleted:
+          type: boolean
+          description: The deleted status of the user (default is false)
+        canRelocate:
+          type: boolean
+          description: Whether or not the user is willing to relocate (default is false)
+        createdAt:
+          type: string
+          format: date-time
+          description: The creation timestamp of the user
+        updatedAt:
+          type: string
+          format: date-time
+          description: The update timestamp of the user
+      example:
+        email: john.doe@example.com
+        fullname: John Doe
+        company_name: Acme Inc.
+        username: johndoe
+        image: https://example.com/profile.jpg
+        resume: https://example.com/resume.pdf
+        password: abcdefg
+        role: organization
+        jobType: permanent
+        phone: 123-456-7890
+        psniNumber: PSNI12345
+        gender: male
+        professionalHeadline: Senior Software Engineer
+        profileSummary: I am an experienced software engineer with a
+        vettingFile: https://example.com/vetting.pdf
+        dispensing_software: PharmacyOS
+        company_website: https://acmeinc.com
+        address: 123 Main St
+        city: Anytown
+        county: Anycounty
+        regNumber: REG12345
+        eir_code: A12 BC34
+        info: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        url: https://johndoe.com
+        occupation: Software Engineer
+        status: unverified
+        isDeleted: false
+        canRelocate: true
+        createdAt: "2022-04-01T10:00:00Z"
+        updatedAt: "2022-04-01T10:30:00Z"
+
+      Application:
+        type: object
+        required:
+          - userId
+          - jobId
+        properties:
+          userId:
+            type: string
+            description: The ID of the user applying for the job
+          jobId:
+            type: string
+            description: The ID of the job the user is applying for
+          user_note:
+            type: string
+            description: A note from the user for the job application
+          admin_note:
+            type: string
+            description: A note from the admin related to the job application
+          status:
+            type: string
+            description: The status of the application (e.g., pending, accepted, rejected)
+          application_date:
+            type: string
+            format: date-time
+            description: The date the application was created
+          isDeleted:
+            type: boolean
+            description: Indicates if the application has been deleted
+        example:
+          userId: 60ff7d1be137662e5c118ebd
+          jobId: 60ff7d1be137662e5c118ebf
+          user_note: "I am excited to apply for this position!"
+          admin_note: "Great candidate!"
+          status: "pending"
+          application_date: "2023-04-05T15:15:00Z"
+          isDeleted: false
+
+    Application:
+      type: object
+      required:
+        - userId
+        - jobId
+      properties:
+        userId:
+          type: string
+          description: The user ID who created the application
+          example: "60c73f9651a2e512dbb0924a"
+        jobId:
+          type: string
+          description: The job ID for which the application was created
+          example: "60c73f9651a2e512dbb0924b"
+        user_note:
+          type: string
+          description: Note from the user for the job application
+          example: "I believe my experience aligns well with this position."
+        admin_note:
+          type: string
+          description: Note from the admin related to the job application
+          example: "Candidate has good experience in the field."
+        status:
+          type: string
+          description: The status of the application (e.g., pending, accepted, rejected)
+          example: "pending"
+        application_date:
+          type: string
+          format: date-time
+          description: The date when the application was created
+          example: "2023-04-05T08:40:51.620Z"
+        isDeleted:
+          type: boolean
+          description: Indicates if the application has been deleted
+          example: false
+      additionalProperties: false

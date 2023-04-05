@@ -1,6 +1,7 @@
 import Authentication from "./authentication.js";
 import CustomError from "../error/index.js";
 import User from "../model/Users.js";
+import jwt from "jsonwebtoken";
 
 class AuthRoles {
   currentRole = "";
@@ -77,5 +78,23 @@ class AuthRoles {
       );
     }
   };
+  authFunction = (req, res, next) => {
+    try {
+      const token = req.headers.authorization.split(" ")[1] || "";
+      //check for token
+      if (!token) {
+        res.json({ status: false, msg: "No token, authorization denied" });
+      } else {
+        //verify token
+        const decoded = jwt.verify(token, process.env.jwtSecret);
+        //add user from payload
+        req.user = decoded;
+        next();
+      }
+    } catch (e) {
+      res.json({ status: false, msg: "token is not valid" });
+    }
+  };
 }
+
 export default new AuthRoles();

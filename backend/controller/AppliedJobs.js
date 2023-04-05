@@ -1,74 +1,84 @@
 import Application from "../model/Application.js";
-import checkId from "../utils/mongoIdCheck.js";
-import StatusCodes from "http-status-codes";
 
 class ApplyRepo {
-  addApplication = async (req, res) => {
-    const userId = req.user._id;
-    const apply = req.body.jobs;
-    const checker = await Application.findOne({ userId });
-    let applyDoc = null;
-    if (!checker) {
-      applyDoc = await Application.create({
-        userId,
-        jobs: apply,
+  applyForJob = async (req, res) => {
+    const { userId, jobId, user_note } = req.body;
+    try {
+      const application = new Application({ userId, jobId, user_note });
+      await application.save();
+      res.status(201).send({ status: true, data: application });
+    } catch (err) {
+      console.log(err);
+      res.status(400).json({ msg: err });
+    }
+  };
+
+  editApplication = async (req, res) => {
+    const { id } = req.params;
+    try {
+      const application = await Application.findByIdAndUpdate(id, req.body, {
+        new: true,
       });
-    } else {
-      applyDoc = await Application.updateOne(
-        { userId },
-        { $push: { jobs: apply } }
-      ).exec();
+      if (!application) {
+        return res
+          .status(400)
+          .send({ status: false, msg: "Problem with the update query" });
+      }
+      return res.status(200).send({ status: true, data: application });
+    } catch (err) {
+      console.log(err);
+      res.json({ msg: err });
+    }
+  };
+
+  getApplicationsByUser = async (req, res) => {
+    const { userId } = req.params;
+    try {
+      const applications = await Application.find({ userId });
+      res.status(200).send({ status: true, data: applications });
+    } catch (err) {
+      console.log(err);
+      res.json({ msg: err });
+    }
+  };
+
+  getApplicationsByJob = async (req, res) => {
+    const { jobId } = req.params;
+    try {
+      const applications = await Application.find({ jobId });
+      res.status(200).send({ status: true, data: applications });
+    } catch (err) {
+      console.log(err);
+      res.json({ msg: err });
+    }
+  };
+  getFilteredApplications = async (req, res) => {
+    const { start_date, end_date, user_id, job_id } = req.query;
+
+    let filter = {};
+
+    if (start_date && end_date) {
+      filter.application_date = {
+        $gte: new Date(start_date),
+        $lte: new Date(end_date),
+      };
     }
 
-    res.status(StatusCodes.OK).json({
-      success: true,
-      message: applyDoc._id
-        ? "Job Registered Successfully"
-        : "Registration failed",
-      scholar: applyDoc,
-    });
-  };
+    if (user_id) {
+      filter.userId = user_id;
+    }
 
-  deleteUserJobs = async (res, req) => {
-    const { applyId } = req.params;
-    await Application.deleteOne({ _id: applyId });
-    res.status(StatusCodes.OK).json({
-      success: true,
-      message: "job deleted successfully",
-    });
-  };
+    if (job_id) {
+      filter.jobId = job_id;
+    }
 
-  deleteApplicationPost = async (req, res) => {
-    const { userId, applyId } = req.params;
-    checkId(userId);
-    checkId(applyId);
-    const applyDoc = await Application.updateOne(
-      { userId },
-      {
-        $pull: { jobId: { applyId } },
-      }
-    ).exec();
-
-    res.status(StatusCodes.OK).json({
-      success: true,
-      jobs: applyDoc,
-      message: "Job deleted",
-    });
-  };
-  getApply = async (req, res) => {
-    const { userId } = req.params;
-    checkId(userId);
-    const applyDoc = await Application.findOne({ userId, isDeleted: false });
-    res.status(StatusCodes.OK).json({
-      success: true,
-      job: applyDoc,
-    });
-  };
-  getAllApplication = async (_, res) => {
-    const applyDoc = await Application.find({ isDeleted: false });
-    return res.status(StatusCodes.OK).json({
-      jobs: applyDoc,
-    });
+    try {
+      const applications = await Application.find(filter);
+      res.status(200).send({ status: true, data: applications });
+    } catch (err) {
+      console.log(err);
+      res.status(400).send({ status: false, msg: err });
+    }
   };
 }
 export default new ApplyRepo();

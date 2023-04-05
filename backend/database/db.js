@@ -24,3 +24,5 @@ export default async () => {
       console.log(err.message);
     });
 };
+
+mongoose.set("strictQuery", false);

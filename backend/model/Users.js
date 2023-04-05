@@ -16,6 +16,9 @@ const userSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    company_name: {
+      type: String,
+    },
     username: { type: String, required: true },
     image: { type: String },
     resume: { type: String },
@@ -27,6 +30,7 @@ const userSchema = new mongoose.Schema(
     role: {
       type: String,
       require: true,
+      default: "organization",
     },
     jobType: { type: String }, //temporary, permanent, contract, fixed, pertime
     phone: { type: String },
@@ -36,6 +40,7 @@ const userSchema = new mongoose.Schema(
     profileSummary: { type: String },
     vettingFile: { type: String },
     dispensing_software: { type: String },
+    company_website: { type: String },
     address: { type: String },
     city: { type: String },
     county: { type: String },
@@ -43,10 +48,12 @@ const userSchema = new mongoose.Schema(
     eir_code: { type: String },
     info: { type: String },
     url: { type: String },
-    occupation: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Category",
-    },
+    occupation: { type: String },
+    // occupation: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: "Category",
+    // },
+    status: { type: String, default: "unverified" },
     isDeleted: { type: Boolean, default: false },
     canRelocate: { type: Boolean, default: false },
   },

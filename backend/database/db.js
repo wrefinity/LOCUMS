@@ -1,9 +1,18 @@
-import mongoose from "mongoose";
+import mongoose, { mongo } from "mongoose";
 import User from "../model/Users.js";
+import dotenv from "dotenv";
+dotenv.config();
+
+let Mongo = "";
+{
+  process.env.isProduction == "true"
+    ? (Mongo = process.env.mongoURLProduction)
+    : (Mongo = process.env.MONGO_URI);
+}
 
 export default async () => {
   await mongoose
-    .connect(process.env.MONGO_URI, {
+    .connect(Mongo, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })

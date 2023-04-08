@@ -1,0 +1,46 @@
+paths:
+  /api/duties/{id}:         # path of the user from your endpoint
+    put:              # endpoint request type (put request)
+      tags:
+        - duties
+      summary: updates duties 
+      produces:
+      - application/json
+      parameters:     # request parameters
+      - name: id      # name of parameter passed
+        in: path      # parameters in the path
+        description: path parameter takes the duty id
+        required: true
+        type: string
+      - in: body
+        name: update duty
+        description: enable update of duties
+        required: false
+        schema:
+          $ref: '#/definitions/updateDuty'
+      responses:
+        200:
+          description: a success operation
+        401:
+          description: Unauthorized users
+definitions:        # Schema definition for the request body
+  updateDuty:
+    type: object
+    properties:
+      pet:
+        type: object
+        properties:
+          userId:
+            type: Object
+          shiftId:
+            type: Object
+          jobId:
+            type: Object
+          clockin:
+            type: Date
+          clockout:
+            type: Date
+          break_time:
+            type: Date
+          break_resume:
+            type: Date

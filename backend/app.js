@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
+import swaggerJSDoc from "swagger-jsdoc";
+import swaggerUI from "swagger-ui-express";
 
 // defined plugin
 import dbConn from "./database/db.js";
@@ -11,6 +13,8 @@ import shiftRoute from "./Router/Shift.js";
 import applyRoute from "./Router/Apply.js";
 import jobsRoute from "./Router/Jobs.js";
 import categoryRoute from "./Router/Categories.js";
+import DutyRosterRoute from "./Router/DutyRoster.js";
+import swaggerSpec from "./Configuration/swagger.js";
 // middleware error handler
 import notFoundMiddleware from "./middleware/not_found.js";
 import errorHandler from "./middleware/errorMiddleware.js";
@@ -23,6 +27,9 @@ app.use(
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "UPDATE"],
   })
 );
+
+// const swaggerSpec = swaggerJSDoc(options);
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -37,6 +44,7 @@ app.use("/applications", applyRoute);
 app.use("/categories", categoryRoute);
 app.use("/jobs", jobsRoute);
 app.use("/shifts", shiftRoute);
+app.use("/duties", DutyRosterRoute);
 app.use("/branches", branchRoute);
 
 app.use(errorHandler);

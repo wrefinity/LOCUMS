@@ -2,6 +2,10 @@ export const findAll = async (obj) => {
   const args = await obj.find({ isDeleted: false });
   return args;
 };
+export const findAllWithParams = async (obj, param) => {
+  const args = await obj.find({ isDeleted: false, ...param });
+  return args;
+};
 export const findId = async (obj, id) => {
   const arg = await obj.findById(id);
   return arg;

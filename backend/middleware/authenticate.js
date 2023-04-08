@@ -8,7 +8,6 @@ export const checkUser = asyncHandler((req, res, next) => {
   if (authHeaders && authHeaders.startsWith("Bearer")) {
     try {
       let token = authHeaders.split(" ")[1];
-      console.log(token);
       jwt.verify(
         String(token),
         process.env.JWT_SECRET,

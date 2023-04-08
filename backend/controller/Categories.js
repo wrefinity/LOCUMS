@@ -44,7 +44,7 @@ class CategoryRepo {
     if (!match)
       throw new CustomError.NotFoundRequestError(`No Category with id : ${id}`);
     const deleted = await updator(Category, id, { isDeleted: false });
-    deleted && res.status(StatusCodes.OK).json({ deleted });
+    deleted && res.status(StatusCodes.OK).json( deleted);
   });
 
   allCategory = asyncHandler(async (req, res) => {
